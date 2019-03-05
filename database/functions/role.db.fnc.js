@@ -4,6 +4,7 @@ const msg = require('../../misc/msg.misc');
 //*****************SCRIPT**********************
 
 class Role_Db_fnc {
+
     async addRole(req, name, color, priority, res) {
         const newGroup = new group_schema({
             name: name,
@@ -18,7 +19,7 @@ class Role_Db_fnc {
         });
         return res.status(201).send({
             error: false,
-            message: msg.reg_created
+            message: msg.role_created
         });
     }
     async addUserToRole(req, role_id, uid, res) {

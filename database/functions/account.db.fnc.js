@@ -48,8 +48,7 @@ class Account_Db_Functions {
     async getAccountByUID(data) {
         return new Promise((r, j) => account_schema.find({ _id: data }, null, (err, data) => {
             if (err) {
-                console.log({ _id: data });
-                return j(err);
+                r(data)
             } else {
                 r(data);
             }

@@ -43,7 +43,7 @@ class Account_Fnc {
                     expiresIn: 60 * 60 //expires in 60 minutes
                 });
                 var key = jwt.sign(payload, hashPassword, {
-                    expiresIn: 60 * 60 * 24 // expires in 24 hours
+                    expiresIn: 60 * 60 * 24 * 7 // expires in 7 Days
                 });
                 if (key && token) {
                     await account_db_fnc.getAccountByUIDAndUpdateKey(d[0]._id, key)
@@ -75,7 +75,7 @@ class Account_Fnc {
             })
         } else {
             const d = await account_db_fnc.getAccountByUID(uid);
-            if (!d[0]) {
+            if (!d || d == undefined) {
                 return res.json({
                     error: true,
                     msg_style: "error",

@@ -10,7 +10,8 @@ const role_fnc = require('../functions/role.fnc');
 //****************SCRIPT*****************
 
 middleware.post('/addRole', async (req, res) => {
-    response = await misc.check_user_roles(req, res, '5c7a7239b35844310c2670b0', 1000)
+    response = await misc.check_user_roles(req, res)
+    console.log(response)
     if (response) {
         role_fnc.addRole(
             req,
@@ -29,7 +30,8 @@ middleware.post('/addRole', async (req, res) => {
 })
 
 middleware.post('/addUserToRole', async (req, res) => {
-    response = await misc.check_user_roles(req, res, '5c7a7239b35844310c2670b0', 1000)
+    response = await misc.check_user_roles(req, res)
+    console.log(response)
     if (response) {
         role_fnc.addUserToRole(
             req,
@@ -46,7 +48,7 @@ middleware.post('/addUserToRole', async (req, res) => {
 })
 
 middleware.post('/getAllRolesWhereUser', async (req, res) => {
-    response = await misc.check_user_roles(req, res, '5c7a7239b35844310c2670b0', 1000)
+    response = await misc.check_user_roles(req, res)
     if (response) {
         role_fnc.getAllRolesWhereUser(
             req,
@@ -63,7 +65,7 @@ middleware.post('/getAllRolesWhereUser', async (req, res) => {
 })
 
 middleware.get('/getAllGroups', async (req, res) => {
-    response = await misc.check_user_roles(req, res, '5c7a7239b35844310c2670b0', 1000)
+    response = await misc.check_user_roles(req, res)
     if (response) {
         role_fnc.getAllRoles(
             req,

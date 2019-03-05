@@ -15,34 +15,36 @@ const database = require('./database/index');
 //****************ROUTE-IMPORTS****************
 const account_router = require('./router/account.route');
 const role_router = require('./router/role.route');
+const route_router = require('./router/route.router');
 
 //****************PREPROCESSING****************
 
 console.log(Date.now() + " " + msg.setup_start)
 const application = express();
 
-console.log(Date.now() + " " + msg.setup_middleware)
+//console.log(Date.now() + " " + msg.setup_middleware)
 const middleware = express.Router();
 
-console.log(Date.now() + " " + msg.setup_database)
+//console.log(Date.now() + " " + msg.setup_database)
 database.connect();
 
-console.log(Date.now() + " " + msg.setup_morgan)
+//console.log(Date.now() + " " + msg.setup_morgan)
 application.use(morgan(config.log_mode));
 
-console.log(Date.now() + " " + msg.setup_parser)
+//console.log(Date.now() + " " + msg.setup_parser)
 application.use(body_parser.urlencoded({ extended: config.urlencoded }));
 application.use(body_parser.json());
 
-console.log(Date.now() + " " + msg.setup_private)
+//console.log(Date.now() + " " + msg.setup_private)
 application.use('/private', cors(), middleware);
 middleware.use((req, res, next) => {
     misc.check_api_token(req, res, next, config.api_secret);
 })
 
 middleware.use('/role-system', role_router)
+middleware.use('/route-system', route_router)
 
-console.log(Date.now() + " " + msg.setup_public);
+//console.log(Date.now() + " " + msg.setup_public);
 application.use('/public', cors(), account_router)
 
 //*******************STARTUP*******************
