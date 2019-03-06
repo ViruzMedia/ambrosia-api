@@ -11,7 +11,6 @@ const role_fnc = require('../functions/role.fnc');
 
 middleware.post('/addRole', async (req, res) => {
     response = await misc.check_user_roles(req, res)
-    console.log(response)
     if (response) {
         role_fnc.addRole(
             req,
@@ -31,7 +30,6 @@ middleware.post('/addRole', async (req, res) => {
 
 middleware.post('/addUserToRole', async (req, res) => {
     response = await misc.check_user_roles(req, res)
-    console.log(response)
     if (response) {
         role_fnc.addUserToRole(
             req,
@@ -48,12 +46,12 @@ middleware.post('/addUserToRole', async (req, res) => {
 })
 
 middleware.post('/getAllRolesWhereUser', async (req, res) => {
-    response = await misc.check_user_roles(req, res)
+    var response = await misc.check_user_roles(req, res)
     if (response) {
         role_fnc.getAllRolesWhereUser(
             req,
             req.body.uid,
-            res
+            res 
         );
     } else {
         return res.json({

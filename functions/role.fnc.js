@@ -44,7 +44,13 @@ class RoleFnc {
         await role_db_fnc.getAllRoles(req, res);
     }
     async getAllRolesWhereUser(req, uid, res) {
-        await role_db_fnc.getAllRolesWhereUser(req, uid, res);
+        const result = await role_db_fnc.getAllRolesWhereUser(req, uid, res);
+        if (result) {
+            res.status(201).send({
+                error: false,
+                role: result
+            })
+        }
     }
 }
 
