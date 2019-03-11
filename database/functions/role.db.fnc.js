@@ -42,7 +42,7 @@ class Role_Db_fnc {
             } else {
                 return res.status(201).send({
                     error: false,
-                    groups: doc
+                    roles: doc
                 });
             }
         })

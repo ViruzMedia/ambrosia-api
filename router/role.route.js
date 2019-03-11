@@ -46,7 +46,7 @@ middleware.post('/addUserToRole', async (req, res) => {
 })
 
 middleware.post('/getAllRolesWhereUser', async (req, res) => {
-    var response = await misc.check_user_roles(req, res)
+    response = await misc.check_user_roles(req, res)
     if (response) {
         role_fnc.getAllRolesWhereUser(
             req,
@@ -62,7 +62,7 @@ middleware.post('/getAllRolesWhereUser', async (req, res) => {
 
 })
 
-middleware.get('/getAllGroups', async (req, res) => {
+middleware.get('/getAllRoles', async (req, res) => {
     response = await misc.check_user_roles(req, res)
     if (response) {
         role_fnc.getAllRoles(

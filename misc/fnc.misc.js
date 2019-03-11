@@ -29,6 +29,7 @@ class Misc_Functions {
             await jwt.verify(token, secret, (err, decoded) => {
                 if (err) {
                     return res.json({
+                        fail: err,
                         error: true,
                         msg_style: "warning",
                         message: msg.token_expired
@@ -64,7 +65,7 @@ class Misc_Functions {
             const d = await role_db_fnc.getAllRolesWhereUser(req, uid, res);
             const route = req.route.path;
             const route_check = await route_db_fnc.getRouteByRoute(req, route, res);
-            if (!d) {
+            if (!d || d == undefined) {
                 //console.log('4')
                 return false;
             } else if (!route_check || route_check == undefined) {

@@ -31,13 +31,22 @@ class Route_Db_fnc {
             } else {
                 return res.status(201).send({
                     error: false,
-                    groups: doc
+                    routes: doc
                 });
             }
         })
     }
     async getRouteByRoute(req, route, res) {
         return new Promise((r, j) => route_schema.find({ route: route }, null, (err, data) => {
+            if (err) {
+                return j(err);
+            } else {
+                r(data);
+            }
+        }))
+    }
+    async getRouteByName(req, name, res) {
+        return new Promise((r, j) => route_schema.find({ name: name }, null, (err, data) => {
             if (err) {
                 return j(err);
             } else {

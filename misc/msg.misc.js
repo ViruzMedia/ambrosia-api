@@ -17,7 +17,7 @@ module.exports = {
 
     //route
     route_no_name: "There is no Name provided!",
-    route_no_route: "There is no Route provided!",
+    route_no_route: "This Page/Route doesnt exist!",
     route_no_priority: "There is no Priority provided!",
     route_no_role: "There is no Role provided!",
     route_created: "Your Route was created!",
